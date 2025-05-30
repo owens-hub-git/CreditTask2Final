@@ -10,14 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
-public class FirstActivity extends AppCompatActivity {
+public class ThirdActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
-
-        ScoreManager.reset();
+        setContentView(R.layout.activity_third);
 
         MaterialButton choice1 = findViewById(R.id.choice1);
         MaterialButton choice2 = findViewById(R.id.choice2);
@@ -51,7 +49,6 @@ public class FirstActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(v -> {
             if (!answered[0] && selectedIndex[0] != -1) {
                 answered[0] = true;
-
                 if (selectedIndex[0] == correctIndex) {
                     choices[selectedIndex[0]].setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     ScoreManager.increment();
@@ -59,10 +56,9 @@ public class FirstActivity extends AppCompatActivity {
                     choices[selectedIndex[0]].setBackgroundTintList(ColorStateList.valueOf(Color.RED));
                     choices[correctIndex].setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                 }
-
                 submitBtn.setText("Next");
             } else if (answered[0]) {
-                Intent nextIntent = new Intent(FirstActivity.this, SecondActivity.class);
+                Intent nextIntent = new Intent(ThirdActivity.this, FourthActivity.class);
                 nextIntent.putExtra("username", name);
                 startActivity(nextIntent);
                 finish();

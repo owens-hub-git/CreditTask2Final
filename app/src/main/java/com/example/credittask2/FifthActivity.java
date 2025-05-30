@@ -10,14 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
-public class FirstActivity extends AppCompatActivity {
+public class FifthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
-
-        ScoreManager.reset();
+        setContentView(R.layout.activity_fifth);
 
         MaterialButton choice1 = findViewById(R.id.choice1);
         MaterialButton choice2 = findViewById(R.id.choice2);
@@ -29,7 +27,7 @@ public class FirstActivity extends AppCompatActivity {
         String name = intent.getStringExtra("username");
         welcomeText.setText("Welcome " + name + "!");
 
-        int correctIndex = 1;
+        int correctIndex = 2; // Carbon Dioxide
         final int[] selectedIndex = {-1};
         final boolean[] answered = {false};
 
@@ -51,7 +49,6 @@ public class FirstActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(v -> {
             if (!answered[0] && selectedIndex[0] != -1) {
                 answered[0] = true;
-
                 if (selectedIndex[0] == correctIndex) {
                     choices[selectedIndex[0]].setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     ScoreManager.increment();
@@ -59,12 +56,11 @@ public class FirstActivity extends AppCompatActivity {
                     choices[selectedIndex[0]].setBackgroundTintList(ColorStateList.valueOf(Color.RED));
                     choices[correctIndex].setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                 }
-
-                submitBtn.setText("Next");
+                submitBtn.setText("Finish");
             } else if (answered[0]) {
-                Intent nextIntent = new Intent(FirstActivity.this, SecondActivity.class);
-                nextIntent.putExtra("username", name);
-                startActivity(nextIntent);
+                Intent resultIntent = new Intent(FifthActivity.this, ResultActivity.class);
+                resultIntent.putExtra("username", name);
+                startActivity(resultIntent);
                 finish();
             }
         });
